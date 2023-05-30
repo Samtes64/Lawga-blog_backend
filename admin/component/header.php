@@ -1,6 +1,5 @@
 <?php
 require 'config/database.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ require 'config/database.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lawga Blog</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/css/style.css" />
     <link
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
@@ -30,18 +29,18 @@ require 'config/database.php';
         >
         <ul class="nav_items">
           <li><a href="blog.php">Blog</a></li>
-          <li><a href="signin.php">Signin</a></li>
-          <!-- <li class="nav_profile">
+          <!-- <li><a href="signin.php">Signin</a></li> -->
+          <li class="nav_profile">
             <div class="avatar">
               <img src="./images/avatar.JPG" alt="avatar" />
             </div>
             <ul>
-              <li><a href="admin/index.php">posts</a></li>
+              <li><a href="index.php">posts</a></li>
               <li style="background: var(--color-dark1)">
                 <a href="signin.php">Logout</a>
               </li>
             </ul>
-          </li> -->
+          </li>
         </ul>
         <button id="open_nav"><i class="uil uil-bars"></i></button>
         <button id="close_nav"><i class="uil uil-multiply"></i></button>

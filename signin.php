@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lawga Blog</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
@@ -30,7 +30,7 @@
                 <input type="text" placeholder="Password">
                 
                 <button type="submit" class="btn">Sign In</button>
-                <small>Don't have an account? <a href="signup.html">Sign Up</a></small>
+                <small>Don't have an account? <a href="signup.php">Sign Up</a></small>
             </form>
         </div>
 

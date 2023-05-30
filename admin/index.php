@@ -14,7 +14,7 @@ include 'component/header.php'
             </a>
           </li>
           <li>
-            <a href="index.php"><i class="uil uil-list-ul"></i>
+            <a href="index.php" class="active"><i class="uil uil-list-ul"></i>
               <h5>Manage Posts</h5>
             </a>
           </li>
@@ -24,45 +24,45 @@ include 'component/header.php'
             </a>
           </li>
           <li>
-            <a href="manage-user.php" class="active"><i class="uil uil-users-alt"></i></i>
+            <a href="manage-user.php" ><i class="uil uil-users-alt"></i></i>
               <h5>Manage Users</h5>
             </a>
           </li>
         </ul>
       </aside>
       <main>
-        <h2>Manage Users</h2>
+        <h2>Manage Posts</h2>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Username</th>
+              <th>Title</th>
+              <th>Category</th>
               <th>Edit</th>
               <th>Delete</th>
-              <th>Admin</th>
+              
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Abebe</td>
-              <td>abe</td>
-              <td><a href="edituser.php" class="btn sm">Edit</a> </td>
-              <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
-              <td>Yes</td>
+              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
+              <td>Art</td>
+              <td><a href="editpost.php" class="btn sm">Edit</a> </td>
+              <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
+              
             </tr>
             <tr>
-                <td>Kebede</td>
-                <td>kebe</td>
-                <td><a href="edituser.php" class="btn sm">Edit</a> </td>
-                <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
-                <td>Yes</td>
+                <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
+                <td>sports</td>
+                <td><a href="editpost.php" class="btn sm">Edit</a> </td>
+                <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
+                
             </tr>
             <tr>
-                <td>chala</td>
-                <td>cha</td>
-                <td><a href="edituser.php" class="btn sm">Edit</a> </td>
-                <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
-                <td>Yes</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, impedit?</td>
+                <td>entertainment</td>
+                <td><a href="editpost.php" class="btn sm">Edit</a> </td>
+                <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
+                
             </tr>
           </tbody>
         </table>
@@ -73,7 +73,7 @@ include 'component/header.php'
     
   </section>
 
- 
-  <?php
+ <?php
+
  include '../components/footer.php'
  ?>
