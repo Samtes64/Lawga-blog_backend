@@ -30,8 +30,8 @@ require 'config/database.php';
         >
         <ul class="nav_items">
           <li><a href="blog.php">Blog</a></li>
-          <!-- <li><a href="signin.php">Signin</a></li> -->
-          <li class="nav_profile">
+          <li><a href="signin.php">Signin</a></li>
+          <!-- <li class="nav_profile">
             <div class="avatar">
               <img src="./images/avatar.JPG" alt="avatar" />
             </div>
@@ -41,7 +41,7 @@ require 'config/database.php';
                 <a href="signin.php">Logout</a>
               </li>
             </ul>
-          </li>
+          </li> -->
         </ul>
         <button id="open_nav"><i class="uil uil-bars"></i></button>
         <button id="close_nav"><i class="uil uil-multiply"></i></button>
