@@ -9,22 +9,22 @@ include 'component/header.php'
       <aside>
         <ul>
           <li>
-            <a href="addpost.html"><i class="uil uil-pen"></i>
+            <a href="addpost.php"><i class="uil uil-pen"></i>
               <h5>Add Post</h5>
             </a>
           </li>
           <li>
-            <a href="dashboard.html" class="active"><i class="uil uil-list-ul"></i>
+            <a href="index.php" class="active"><i class="uil uil-list-ul"></i>
               <h5>Manage Posts</h5>
             </a>
           </li>
           <li>
-            <a href="adduser.html"><i class="uil uil-user-plus"></i>
+            <a href="adduser.php"><i class="uil uil-user-plus"></i>
               <h5>Add User</h5>
             </a>
           </li>
           <li>
-            <a href="manage-user.html" ><i class="uil uil-users-alt"></i></i>
+            <a href="manage-user.php" ><i class="uil uil-users-alt"></i></i>
               <h5>Manage Users</h5>
             </a>
           </li>
@@ -46,22 +46,22 @@ include 'component/header.php'
             <tr>
               <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
               <td>Art</td>
-              <td><a href="edit-category.html" class="btn sm">Edit</a> </td>
-              <td><a href="delete-category.html" class="btn sm red">delete</a> </td>
+              <td><a href="editpost.php" class="btn sm">Edit</a> </td>
+              <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
               
             </tr>
             <tr>
                 <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
                 <td>sports</td>
-                <td><a href="edit-category.html" class="btn sm">Edit</a> </td>
-                <td><a href="delete-category.html" class="btn sm red">delete</a> </td>
+                <td><a href="editpost.php" class="btn sm">Edit</a> </td>
+                <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
                 
             </tr>
             <tr>
                 <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, impedit?</td>
                 <td>entertainment</td>
-                <td><a href="edit-category.html" class="btn sm">Edit</a> </td>
-                <td><a href="delete-category.html" class="btn sm red">delete</a> </td>
+                <td><a href="editpost.php" class="btn sm">Edit</a> </td>
+                <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
                 
             </tr>
           </tbody>

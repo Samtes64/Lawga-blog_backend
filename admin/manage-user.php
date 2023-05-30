@@ -9,22 +9,22 @@ include 'component/header.php'
       <aside>
         <ul>
           <li>
-            <a href="addpost.html"><i class="uil uil-pen"></i>
+            <a href="addpost.php"><i class="uil uil-pen"></i>
               <h5>Add Post</h5>
             </a>
           </li>
           <li>
-            <a href="dashboard.html"><i class="uil uil-list-ul"></i>
+            <a href="index.php"><i class="uil uil-list-ul"></i>
               <h5>Manage Posts</h5>
             </a>
           </li>
           <li>
-            <a href="adduser.html"><i class="uil uil-user-plus"></i>
+            <a href="adduser.php"><i class="uil uil-user-plus"></i>
               <h5>Add User</h5>
             </a>
           </li>
           <li>
-            <a href="manage-user.html" class="active"><i class="uil uil-users-alt"></i></i>
+            <a href="manage-user.php" class="active"><i class="uil uil-users-alt"></i></i>
               <h5>Manage Users</h5>
             </a>
           </li>
@@ -46,22 +46,22 @@ include 'component/header.php'
             <tr>
               <td>Abebe</td>
               <td>abe</td>
-              <td><a href="edit-category.html" class="btn sm">Edit</a> </td>
-              <td><a href="delete-category.html" class="btn sm red">delete</a> </td>
+              <td><a href="edituser.php" class="btn sm">Edit</a> </td>
+              <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
               <td>Yes</td>
             </tr>
             <tr>
                 <td>Kebede</td>
                 <td>kebe</td>
-                <td><a href="edit-category.html" class="btn sm">Edit</a> </td>
-                <td><a href="delete-category.html" class="btn sm red">delete</a> </td>
+                <td><a href="edituser.php" class="btn sm">Edit</a> </td>
+                <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
                 <td>Yes</td>
             </tr>
             <tr>
                 <td>chala</td>
                 <td>cha</td>
-                <td><a href="edit-category.html" class="btn sm">Edit</a> </td>
-                <td><a href="delete-category.html" class="btn sm red">delete</a> </td>
+                <td><a href="edituser.php" class="btn sm">Edit</a> </td>
+                <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
                 <td>Yes</td>
             </tr>
           </tbody>

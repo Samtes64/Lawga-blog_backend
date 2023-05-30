@@ -44,5 +44,5 @@ include 'component/header.php'
 
 
  <?php
- include '../components/footer.php '
+ include '../components/footer.php'
  ?>

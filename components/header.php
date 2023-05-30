@@ -36,7 +36,7 @@ require 'config/database.php';
               <img src="./images/avatar.JPG" alt="avatar" />
             </div>
             <ul>
-              <li><a href="dashboard.php">posts</a></li>
+              <li><a href="admin/index.php">posts</a></li>
               <li style="background: var(--color-dark1)">
                 <a href="signin.php">Logout</a>
               </li>
