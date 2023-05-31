@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require 'config/database.php';
 
 // get signup form data when the signup button is clicked
