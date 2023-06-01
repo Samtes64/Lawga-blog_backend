@@ -1,5 +1,7 @@
 <?php
 require 'config/constants.php';
+$username_email = $_SESSION['signin-data']['username_email'] ?? null;
+
 ?>
 
 <!DOCTYPE html>
@@ -33,13 +35,22 @@ require 'config/constants.php';
                    ?>
                 </p>
               </div>
+              <?php elseif(isset($_SESSION['signin'])) :  ?>
+              <div class="alert_message error">
+                <p>
+                  <?= $_SESSION['signin'];
+                  unset($_SESSION['signin'])
+                   ?>
+                </p>
+              </div>
+              
 
             <?php endif ?>
-            <form action="">
-                <input type="text" placeholder="Username">
-                <input type="text" placeholder="Password">
+            <form action="<?=ROOT_URL?>signin-logic.php" method="POST">
+                <input type="text" placeholder="Username" value='<?= $username_email?>' name='username_email'>
+                <input type="text" placeholder="Password" name='password'>
                 
-                <button type="submit" class="btn">Sign In</button>
+                <button type="submit" name="submit" class="btn">Sign In</button>
                 <small>Don't have an account? <a href="signup.php">Sign Up</a></small>
             </form>
         </div>
