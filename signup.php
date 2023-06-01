@@ -9,6 +9,7 @@ $username = $_SESSION['signup-data']['username'] ?? null;
 $email = $_SESSION['signup-data']['email'] ?? null;
 $createpassword = $_SESSION['signup-data']['createpassword'] ?? null;
 $confirmpassword = $_SESSION['signup-data']['confirmpassword'] ?? null;
+unset($_SESSION['signup-data']);
 
 
 ?>
@@ -35,7 +36,7 @@ $confirmpassword = $_SESSION['signup-data']['confirmpassword'] ?? null;
       <h2>Sign Up</h2>
       <?php if (isset($_SESSION['signup'])) : ?>
         <div class="alert_message error">
-          <p><?= $_SESSION['signup'];
+          <p><?= $_SESSION['signup'] ;
               unset($_SESSION['signup']);
               ?>
           </p>

@@ -25,7 +25,7 @@ require 'config/constants.php';
 
         <div class="container form_section-container">
             <h2>Sign In</h2>
-            <?php if( $_SESSION['signup-success']) :  ?>
+            <?php if( isset($_SESSION['signup-success'])) :  ?>
               <div class="alert_message success">
                 <p>
                   <?= $_SESSION['signup-success'];
