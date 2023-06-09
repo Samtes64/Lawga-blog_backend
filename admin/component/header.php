@@ -28,8 +28,9 @@ require 'config/database.php';
           >ga</a
         >
         <ul class="nav_items">
-          <li><a href="blog.php">Blog</a></li>
-          <!-- <li><a href="signin.php">Signin</a></li> -->
+          <li><a href="<?=ROOT_URL?>blog.php">Blog</a></li>
+          
+          <?php if(isset($_SESSION['user-id'])) : ?>
           <li class="nav_profile">
             <div class="avatar">
               <img src="./images/avatar.JPG" alt="avatar" />
@@ -41,6 +42,9 @@ require 'config/database.php';
               </li>
             </ul>
           </li>
+          <?php else : ?>
+          <li><a href="<?=ROOT_URL?>signin.php">Signin</a></li>
+          <?php endif?>
         </ul>
         <button id="open_nav"><i class="uil uil-bars"></i></button>
         <button id="close_nav"><i class="uil uil-multiply"></i></button>

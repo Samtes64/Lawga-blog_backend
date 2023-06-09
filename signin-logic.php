@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
             //check password
             if(password_verify($password, $db_password)){
                 // setting about user session for later control purposes
-                $_SESSION['user_id']  = $user_record['id'];
+                $_SESSION['user-id']  = $user_record['id'];
                 // setting session for admin
                 if($user_record['is_admin']==0){
                     $_SESSION['user_is_admin'] = false;
