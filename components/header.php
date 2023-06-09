@@ -46,7 +46,7 @@ if(isset($_SESSION['user-id'])){
             <ul>
               <li><a href="index.php">posts</a></li>
               <li style="background: var(--color-dark1)">
-                <a href="signin.php">Logout</a>
+                <a href="<?=ROOT_URL?>logout.php">Logout</a>
               </li>
             </ul>
           </li>
