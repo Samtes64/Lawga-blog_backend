@@ -23,7 +23,10 @@ if(isset($_POST['submit'])){
                 // setting about user session for later control purposes
                 $_SESSION['user_id']  = $user_record['id'];
                 // setting session for admin
-                if($user_record['is_admin']==1){
+                if($user_record['is_admin']==0){
+                    $_SESSION['user_is_admin'] = false;
+                }
+                elseif($user_record['is_admin']==1){
                     $_SESSION['user_is_admin'] = true;
                 }
 

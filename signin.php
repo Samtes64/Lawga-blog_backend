@@ -1,6 +1,7 @@
 <?php
 require 'config/constants.php';
 $username_email = $_SESSION['signin-data']['username_email'] ?? null;
+unset($_SESSION['signin-data'])
 
 ?>
 
