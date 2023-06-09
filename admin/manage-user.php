@@ -18,6 +18,7 @@ include 'component/header.php'
               <h5>Manage Posts</h5>
             </a>
           </li>
+          <?php if(isset($_SESSION['user_is_set'])): ?>
           <li>
             <a href="adduser.php"><i class="uil uil-user-plus"></i>
               <h5>Add User</h5>
@@ -28,6 +29,7 @@ include 'component/header.php'
               <h5>Manage Users</h5>
             </a>
           </li>
+          <?php endif?>
         </ul>
       </aside>
       <main>
