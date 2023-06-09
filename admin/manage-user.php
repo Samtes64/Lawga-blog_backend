@@ -3,7 +3,17 @@ include 'component/header.php'
 ?>
 
 <section class="dashboard">
+<?php if( isset($_SESSION['adduser-success'])) :  ?>
+              <div class="alert_message success container">
+                <p>
+                  <?= $_SESSION['adduser-success'];
+                  unset($_SESSION['adduser-success'])
+                   ?>
+                </p>
+              </div>
+              <?php endif ?>
   <div class="dashboard_container container ">
+    
     <div id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></div>
     <div id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left"></i></div>
     <aside>
