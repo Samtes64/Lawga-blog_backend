@@ -18,7 +18,7 @@ if(isset($_SESSION['user-id'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lawga Blog</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL?>css/style.css" />
     <link
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
@@ -44,7 +44,7 @@ if(isset($_SESSION['user-id'])){
               <img src="<?=ROOT_URL . 'images/' . $avatar['avatar']?>" alt="avatar" />
             </div>
             <ul>
-              <li><a href="index.php">posts</a></li>
+              <li><a href="admin/index.php">manage</a></li>
               <li style="background: var(--color-dark1)">
                 <a href="<?=ROOT_URL?>logout.php">Logout</a>
               </li>
