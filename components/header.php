@@ -37,7 +37,7 @@ if(isset($_SESSION['user-id'])){
           >ga</a
         >
         <ul class="nav_items">
-          <li><a href="blog.php">Blog</a></li>
+          <li><a href="<?=ROOT_URL?>blog.php">Blog</a></li>
           <?php if(isset($_SESSION['user-id'])) : ?>
           <li class="nav_profile">
             <div class="avatar">
