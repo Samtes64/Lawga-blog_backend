@@ -1,19 +1,43 @@
 <?php
-include 'component/header.php'
+include 'component/header.php';
+
+//fetch users from database other than the current user
+$current_admin_id = $_SESSION['user-id'];
+$query = "SELECT * FROM users WHERE NOT id=$current_admin_id";
+$users = mysqli_query($connection, $query);
+
+
+
 ?>
 
 <section class="dashboard">
-<?php if( isset($_SESSION['adduser-success'])) :  ?>
-              <div class="alert_message success container">
-                <p>
-                  <?= $_SESSION['adduser-success'];
-                  unset($_SESSION['adduser-success'])
-                   ?>
-                </p>
-              </div>
-              <?php endif ?>
+  <?php if (isset($_SESSION['adduser-success'])) :  //shows if user was added successfully?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['adduser-success'];
+        unset($_SESSION['adduser-success'])
+        ?>
+      </p>
+    </div>
+    <?php elseif (isset($_SESSION['edituser-success'])) :  //shows if user was edited successfully?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['edituser-success'];
+        unset($_SESSION['edituser-success'])
+        ?>
+      </p>
+    </div>
+    <?php elseif (isset($_SESSION['edituser'])) :  //shows if user was not edited successfully?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['edituser'];
+        unset($_SESSION['edituser'])
+        ?>
+      </p>
+    </div>
+  <?php endif ?>
   <div class="dashboard_container container ">
-    
+
     <div id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></div>
     <div id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left"></i></div>
     <aside>
@@ -56,27 +80,16 @@ include 'component/header.php'
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Abebe</td>
-            <td>abe</td>
-            <td><a href="edituser.php" class="btn sm">Edit</a> </td>
-            <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>Kebede</td>
-            <td>kebe</td>
-            <td><a href="edituser.php" class="btn sm">Edit</a> </td>
-            <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>chala</td>
-            <td>cha</td>
-            <td><a href="edituser.php" class="btn sm">Edit</a> </td>
-            <td><a href="deleteuser.php" class="btn sm red">delete</a> </td>
-            <td>Yes</td>
-          </tr>
+          <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+            <tr>
+              <td><?= $user['firstname'] . " " .  $user['lastname'] ?></td>
+              <td><?= $user['username'] ?></td>
+              <td><a href="<?= ROOT_URL ?>admin/edituser.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a> </td>
+              <td><a href="<?= ROOT_URL ?>admin/deleteuser.php?id=<?= $user['id'] ?>" class="btn sm red">delete</a> </td>
+              <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
+            </tr>
+          <?php endwhile ?>
+
         </tbody>
       </table>
 
