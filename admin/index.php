@@ -14,7 +14,7 @@ include 'component/header.php'
             </a>
           </li>
           <li>
-            <a href="index.php" class="active"><i class="uil uil-list-ul"></i>
+            <a href="index.php" class="active"><i class="uil uil-postcard"></i>
               <h5>Manage Posts</h5>
             </a>
           </li>
@@ -28,6 +28,16 @@ include 'component/header.php'
           <li>
             <a href="manage-user.php" ><i class="uil uil-users-alt"></i></i>
               <h5>Manage Users</h5>
+            </a>
+          </li>
+          <li>
+            <a href="addcategory.php" class=""><i class="uil uil-edit"></i></i>
+              <h5>Add Category</h5>
+            </a>
+          </li>
+          <li>
+            <a href="managecategory.php" class=""><i class="uil uil-list-ul"></i></i>
+              <h5>Manage Category</h5>
             </a>
           </li>
           <?php endif ?>

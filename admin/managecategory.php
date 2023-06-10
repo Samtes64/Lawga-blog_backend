@@ -81,7 +81,7 @@ $users = mysqli_query($connection, $query);
             </a>
           </li>
           <li>
-            <a href="manage-user.php" class="active"><i class="uil uil-users-alt"></i></i>
+            <a href="manage-user.php" class=""><i class="uil uil-users-alt"></i></i>
               <h5>Manage Users</h5>
             </a>
           </li>
@@ -91,7 +91,7 @@ $users = mysqli_query($connection, $query);
             </a>
           </li>
           <li>
-            <a href="managecategory.php" class=""><i class="uil uil-list-ul"></i></i>
+            <a href="managecategory.php" class="active"><i class="uil uil-list-ul"></i></i>
               <h5>Manage Category</h5>
             </a>
           </li>
@@ -99,7 +99,7 @@ $users = mysqli_query($connection, $query);
       </ul>
     </aside>
     <main>
-      <h2>Manage Users</h2>
+      <h2>Manage Category</h2>
       <?php if (mysqli_num_rows($users) > 0) : ?>
         <table>
           <thead>
