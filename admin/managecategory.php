@@ -1,49 +1,49 @@
 <?php
 include 'component/header.php';
 
-//fetch users from database other than the current user
-$current_admin_id = $_SESSION['user-id'];
-$query = "SELECT * FROM users WHERE NOT id=$current_admin_id";
-$users = mysqli_query($connection, $query);
+//fetch category from database 
+
+$query = "SELECT * FROM categories where not title='Uncategorized' ORDER BY title";
+$categories = mysqli_query($connection, $query);
 
 
 
 ?>
 
 <section class="dashboard">
-  <?php if (isset($_SESSION['adduser-success'])) :  //shows if user was added successfully
+  <?php if (isset($_SESSION['addcategory-success'])) :  //shows if the category was added successfully
   ?>
     <div class="alert_message success container">
       <p>
-        <?= $_SESSION['adduser-success'];
-        unset($_SESSION['adduser-success'])
+        <?= $_SESSION['addcategory-success'];
+        unset($_SESSION['addcategory-success'])
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['edituser-success'])) :  //shows if user was edited successfully
+  <?php elseif (isset($_SESSION['editcategory-success'])) :  //shows if the category was edited successfully
   ?>
     <div class="alert_message success container">
       <p>
-        <?= $_SESSION['edituser-success'];
-        unset($_SESSION['edituser-success'])
+        <?= $_SESSION['editcategory-success'];
+        unset($_SESSION['editcategory-success'])
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['edituser'])) :  //shows if user was not edited successfully
+  <?php elseif (isset($_SESSION['editcategory'])) :  //shows if the category was not edited successfully
   ?>
     <div class="alert_message error container">
       <p>
-        <?= $_SESSION['edituser'];
-        unset($_SESSION['edituser'])
+        <?= $_SESSION['editcategory'];
+        unset($_SESSION['editcategory'])
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['deleteuser-success'])) :  //shows if user was edited successfully
+  <?php elseif (isset($_SESSION['deletecategory-success'])) :  //shows if user was edited successfully
   ?>
     <div class="alert_message success container">
       <p>
-        <?= $_SESSION['deleteuser-success'];
-        unset($_SESSION['deleteuser-success'])
+        <?= $_SESSION['deletecategory-success'];
+        unset($_SESSION['deletecategory-success'])
         ?>
       </p>
     </div>
@@ -100,32 +100,32 @@ $users = mysqli_query($connection, $query);
     </aside>
     <main>
       <h2>Manage Category</h2>
-      <?php if (mysqli_num_rows($users) > 0) : ?>
+      <?php if (mysqli_num_rows($categories) > 0) : ?>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Username</th>
+              <th>Title</th>
+              
               <th>Edit</th>
               <th>Delete</th>
-              <th>Admin</th>
+              
             </tr>
           </thead>
           <tbody>
-            <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+            <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
               <tr>
-                <td><?= $user['firstname'] . " " .  $user['lastname'] ?></td>
-                <td><?= $user['username'] ?></td>
-                <td><a href="<?= ROOT_URL ?>admin/edituser.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a> </td>
-                <td><a href="<?= ROOT_URL ?>admin/deleteuser.php?id=<?= $user['id'] ?>" class="btn sm red">delete</a> </td>
-                <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
+                <td><?= $category['title'] ?></td>
+                
+                <td><a href="<?= ROOT_URL ?>admin/editcategory.php?id=<?= $category['id'] ?>" class="btn sm">Edit</a> </td>
+                <td><a href="<?= ROOT_URL ?>admin/deletecategory.php?id=<?= $category['id'] ?>" class="btn sm red">delete</a> </td>
+                
               </tr>
             <?php endwhile ?>
 
           </tbody>
         </table>
       <?php else : ?>
-        <div class="alert_message error"><?="No users found"?></div>
+        <div class="alert_message error"><?="No categories found"?></div>
       <?php endif ?>
 
 
