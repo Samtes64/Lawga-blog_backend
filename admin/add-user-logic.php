@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
         $insert_user_result = mysqli_query($connection, $insert_user_query);
 
         if (!mysqli_error($connection)) {
-            // redirect to login page with success message
+            // redirect to manageuser page with success message
             $_SESSION['adduser-success'] = "User $firstname added";
             header('location: ' . ROOT_URL . 'admin/manage-user.php');
             die();
