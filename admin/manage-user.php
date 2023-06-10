@@ -11,7 +11,8 @@ $users = mysqli_query($connection, $query);
 ?>
 
 <section class="dashboard">
-  <?php if (isset($_SESSION['adduser-success'])) :  //shows if user was added successfully?>
+  <?php if (isset($_SESSION['adduser-success'])) :  //shows if user was added successfully
+  ?>
     <div class="alert_message success container">
       <p>
         <?= $_SESSION['adduser-success'];
@@ -19,7 +20,8 @@ $users = mysqli_query($connection, $query);
         ?>
       </p>
     </div>
-    <?php elseif (isset($_SESSION['edituser-success'])) :  //shows if user was edited successfully?>
+  <?php elseif (isset($_SESSION['edituser-success'])) :  //shows if user was edited successfully
+  ?>
     <div class="alert_message success container">
       <p>
         <?= $_SESSION['edituser-success'];
@@ -27,7 +29,8 @@ $users = mysqli_query($connection, $query);
         ?>
       </p>
     </div>
-    <?php elseif (isset($_SESSION['edituser'])) :  //shows if user was not edited successfully?>
+  <?php elseif (isset($_SESSION['edituser'])) :  //shows if user was not edited successfully
+  ?>
     <div class="alert_message error container">
       <p>
         <?= $_SESSION['edituser'];
@@ -35,7 +38,8 @@ $users = mysqli_query($connection, $query);
         ?>
       </p>
     </div>
-    <?php elseif (isset($_SESSION['deleteuser-success'])) :  //shows if user was edited successfully?>
+  <?php elseif (isset($_SESSION['deleteuser-success'])) :  //shows if user was edited successfully
+  ?>
     <div class="alert_message success container">
       <p>
         <?= $_SESSION['deleteuser-success'];
@@ -43,7 +47,8 @@ $users = mysqli_query($connection, $query);
         ?>
       </p>
     </div>
-    <?php elseif (isset($_SESSION['deleteuser'])) :  //shows if user was not edited successfully?>
+  <?php elseif (isset($_SESSION['deleteuser'])) :  //shows if user was not edited successfully
+  ?>
     <div class="alert_message error container">
       <p>
         <?= $_SESSION['deleteuser'];
@@ -85,29 +90,33 @@ $users = mysqli_query($connection, $query);
     </aside>
     <main>
       <h2>Manage Users</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            <th>Admin</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+      <?php if (mysqli_num_rows($users) > 0) : ?>
+        <table>
+          <thead>
             <tr>
-              <td><?= $user['firstname'] . " " .  $user['lastname'] ?></td>
-              <td><?= $user['username'] ?></td>
-              <td><a href="<?= ROOT_URL ?>admin/edituser.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a> </td>
-              <td><a href="<?= ROOT_URL ?>admin/deleteuser.php?id=<?= $user['id'] ?>" class="btn sm red">delete</a> </td>
-              <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Admin</th>
             </tr>
-          <?php endwhile ?>
+          </thead>
+          <tbody>
+            <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+              <tr>
+                <td><?= $user['firstname'] . " " .  $user['lastname'] ?></td>
+                <td><?= $user['username'] ?></td>
+                <td><a href="<?= ROOT_URL ?>admin/edituser.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a> </td>
+                <td><a href="<?= ROOT_URL ?>admin/deleteuser.php?id=<?= $user['id'] ?>" class="btn sm red">delete</a> </td>
+                <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
+              </tr>
+            <?php endwhile ?>
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <?php else : ?>
+        <div class="alert_message error"><?="No users found"?></div>
+      <?php endif ?>
 
 
     </main>
