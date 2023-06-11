@@ -3,6 +3,52 @@ include 'component/header.php'
 ?>
 
   <section class="dashboard">
+  <?php if (isset($_SESSION['addpost-success'])) :  //shows if post was added successfully
+  ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['addpost-success'];
+        unset($_SESSION['addpost-success'])
+        ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edituser-success'])) :  //shows if user was edited successfully
+  ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['edituser-success'];
+        unset($_SESSION['edituser-success'])
+        ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edituser'])) :  //shows if user was not edited successfully
+  ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['edituser'];
+        unset($_SESSION['edituser'])
+        ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['deleteuser-success'])) :  //shows if user was edited successfully
+  ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['deleteuser-success'];
+        unset($_SESSION['deleteuser-success'])
+        ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['deleteuser'])) :  //shows if user was not edited successfully
+  ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['deleteuser'];
+        unset($_SESSION['deleteuser'])
+        ?>
+      </p>
+    </div>
+  <?php endif ?>
     <div class="dashboard_container container ">
         <div id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></div>
         <div id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left"></i></div>
