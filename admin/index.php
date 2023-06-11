@@ -12,39 +12,39 @@ include 'component/header.php'
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['edituser-success'])) :  //shows if user was edited successfully
+  <?php elseif (isset($_SESSION['editpost-success'])) :  //shows if post was edited successfully
   ?>
     <div class="alert_message success container">
       <p>
-        <?= $_SESSION['edituser-success'];
-        unset($_SESSION['edituser-success'])
+        <?= $_SESSION['editpost-success'];
+        unset($_SESSION['editpost-success'])
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['edituser'])) :  //shows if user was not edited successfully
+  <?php elseif (isset($_SESSION['editpost'])) :  //shows if post was not edited successfully
   ?>
     <div class="alert_message error container">
       <p>
-        <?= $_SESSION['edituser'];
-        unset($_SESSION['edituser'])
+        <?= $_SESSION['editpost'];
+        unset($_SESSION['editpost'])
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['deleteuser-success'])) :  //shows if user was edited successfully
+  <?php elseif (isset($_SESSION['deletepost-success'])) :  //shows if post was deleted successfully
   ?>
     <div class="alert_message success container">
       <p>
-        <?= $_SESSION['deleteuser-success'];
-        unset($_SESSION['deleteuser-success'])
+        <?= $_SESSION['deletepost-success'];
+        unset($_SESSION['deletepost-success'])
         ?>
       </p>
     </div>
-  <?php elseif (isset($_SESSION['deleteuser'])) :  //shows if user was not edited successfully
+  <?php elseif (isset($_SESSION['deletepost'])) :  //shows if user was not deleted successfully
   ?>
     <div class="alert_message error container">
       <p>
-        <?= $_SESSION['deleteuser'];
-        unset($_SESSION['deleteuser'])
+        <?= $_SESSION['deletepost'];
+        unset($_SESSION['deletepost'])
         ?>
       </p>
     </div>
