@@ -1,5 +1,11 @@
 <?php
-include 'component/header.php'
+include 'component/header.php';
+
+$current_user_id = $_SESSION['user-id'];
+
+$query = "SELECT posts.* , categories.title AS category_title FROM posts JOIN categories ON posts.category_id = categories.id WHERE author_id=$current_user_id ";
+$posts = mysqli_query($connection, $query);
+
 ?>
 
   <section class="dashboard">
@@ -91,6 +97,7 @@ include 'component/header.php'
       </aside>
       <main>
         <h2>Manage Posts</h2>
+        <?php if (mysqli_num_rows($posts) > 0) : ?>
         <table>
           <thead>
             <tr>
@@ -102,29 +109,22 @@ include 'component/header.php'
             </tr>
           </thead>
           <tbody>
+
+          <?php while($post = mysqli_fetch_assoc($posts)) :?>
             <tr>
-              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
-              <td>Art</td>
-              <td><a href="editpost.php" class="btn sm">Edit</a> </td>
-              <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
+              <td><?=$post['title']?></td>
+              <td><?=$post['category_title']?></td>
+              <td><a href="<?=ROOT_URL?>admin/editpost.php?id=<?=$post['id']?>" class="btn sm">Edit</a> </td>
+              <td><a href="<?=ROOT_URL?>admin/deletepost.php?id=<?=$post['id']?>" class="btn sm red">delete</a> </td>
               
             </tr>
-            <tr>
-                <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
-                <td>sports</td>
-                <td><a href="editpost.php" class="btn sm">Edit</a> </td>
-                <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
-                
-            </tr>
-            <tr>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, impedit?</td>
-                <td>entertainment</td>
-                <td><a href="editpost.php" class="btn sm">Edit</a> </td>
-                <td><a href="deletepost.php" class="btn sm red">delete</a> </td>
-                
-            </tr>
+            <?php endwhile?>
+            
           </tbody>
         </table>
+        <?php else : ?>
+        <div class="alert_message error"><?="No posts by user found"?></div>
+      <?php endif ?>
   
   
       </main>

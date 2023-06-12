@@ -1,49 +1,66 @@
 <?php
-include 'component/header.php'
+include 'component/header.php';
+
+if(isset($_GET['id'])){
+    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT * FROM posts WHERE id=$id";
+    $result = mysqli_query($connection, $query);
+    $post = mysqli_fetch_assoc($result);
+
+
+} else{
+    header('location: ' . ROOT_URL . 'admin/index.php');
+    die();
+}
+
+$query = "SELECT * FROM categories";
+$categories = mysqli_query($connection, $query);
+
+
 ?>
 
-    <section class="form_section">
+<section class="form_section">
 
-        <div class="container form_section-container">
-            <h2>Edit Post</h2>
+    <div class="container form_section-container">
+        <h2>Edit Post</h2>
+        <?php if (isset($_SESSION['addpost'])) : ?>
             <div class="alert_message error">
-                <p>This is an error message</p>
+                <p>
+                    <?= $_SESSION['addpost'];
+                    unset($_SESSION['addpost']);
+                    ?>
+                </p>
             </div>
-            <form action="" enctype="multipart/form-data">
-                <input type="text" placeholder="title">
-                <select >
-                    <option value="1" disabled selected>Select catagory</option>
-                    <option value="1">Personal blog</option>
-                    <option value="1">Lifestyle</option>
-                    <option value="1">Technology</option>
-                    <option value="1">Business</option>
-                    <option value="1">Entertainment</option>
-                    <option value="1">Politics</option>
-                    <option value="1">Sports</option>
-                    <option value="1">Art and culture</option>
-                    <option value="1">Science</option>
-                    <option value="1">Enviroment</option>
-                </select>
 
-                
-                
-                <textarea  rows="10" placeholder="Body"></textarea>
+        <?php endif ?>
+        <form action="<?= ROOT_URL ?>admin/edit-post-logic.php"  method="POST">
+        <input type="hidden" name="id" value="<?=$id?>">
+            <input type="text" name="title" value="<?=$post['title']?>" placeholder="title">
+            <select name="category" value="">
+                <option value="" disabled selected>Select catagory</option>
+                <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
+                    <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
+
+                <?php endwhile ?>
+            </select>
+
+
+
+            <textarea rows="10" name="body" placeholder="Body"><?=$post['body']?></textarea>
+            <?php if (($_SESSION['user_is_admin']) == true) : ?>
                 <div class="form_control inline">
-                    <input type="checkbox" id="is_featured" checked  >
-                    <label for="is_featured" >Featured</label>
+                    <input type="checkbox" value="1" name="is_featured" id="is_featured" >
+                    <label for="is_featured">Featured</label>
                 </div>
-                <div class="form_control">
-                    <label for="thumbnail">Add Thumbnail</label>
-                    <input type="file" id="thumbnail">
-                </div>
-                <button type="submit" class="btn">Update Post</button>
-            </form>
-        </div>
+            <?php endif ?>
+            
+            <button type="submit" name="submit" class="btn">Update</button>
+        </form>
+    </div>
 
-    </section>
+</section>
 
 
-
-    <?php
- include '../components/footer.php'
- ?>
+<?php
+include '../components/footer.php'
+?>

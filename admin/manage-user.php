@@ -3,7 +3,7 @@ include 'component/header.php';
 
 //fetch users from database other than the current user
 $current_admin_id = $_SESSION['user-id'];
-$query = "SELECT * FROM users WHERE NOT id=$current_admin_id";
+$query = "SELECT * FROM users WHERE NOT id=$current_admin_id AND NOT username='samtes'";
 $users = mysqli_query($connection, $query);
 
 
