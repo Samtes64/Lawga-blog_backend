@@ -8,10 +8,18 @@ if(isset($_GET['id'])){
     //FOR LATER
     // update category_id of posts that belong to this category to id of uncategorized category
 
-    // delete category
+    $update_query = "UPDATE posts SET category_id=15 WHERE category_id=$id;";
+    $update_result = mysqli_query($connection, $update_query);
+
+    if(!mysqli_errno($connection)){
+        // delete category
     $query = "DELETE FROM categories WHERE id=$id LIMIT 1";
     $result = mysqli_query($connection,$query);
     $_SESSION['deletecategory-success'] = "Category deleted seccessfully";
+
+    }
+
+    
 
 }
 

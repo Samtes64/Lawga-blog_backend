@@ -1,34 +1,58 @@
 <?php
-include 'components/header.php'
-?>
+include 'components/header.php';
 
+// fetch featured post from database
+
+$featured_query="SELECT * FROM posts WHERE is_featured=1";
+$featured_result = mysqli_query($connection, $featured_query);
+$featured = mysqli_fetch_assoc($featured_result);
+
+//fetch 9 posts from posts table
+
+$query = "SELECT * FROM posts ORDER BY date_time LIMIT 9";
+$posts = mysqli_query($connection,$query);
+
+?>
+    <?php if(mysqli_num_rows($featured_result )==1) : ?>
     <section class="featured">
       <div class="container featured_container">
         <div class="post_thumbnail">
-          <img src="./images/featured.jpg" alt="" />
+          <img src="./images/<?=$featured['thumbnail'] ?>" alt="" />
         </div>
         <div class="post_info">
-          <a href="" class="category_button">Enertainment</a>
+            <?php
+            $category_id = $featured['category_id'];
+            $category_query = "SELECT * FROM categories WHERE id=$category_id";
+            $category_result = mysqli_query($connection , $category_query);
+            $category = mysqli_fetch_assoc($category_result)
+
+
+            ?>
+          <a href="<?=ROOT_URL?>category-posts.php?id=<?=$featured['category_id']?>" class="category_button"><?=$category['title']?></a>
           <h2 class="post_title">
-            <a href="viewpost.html"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit.</a
+            <a href="<?=ROOT_URL?>viewpost.php?id=<?=$featured['id']?>"
+              ><?= $featured['title']?></a
             >
           </h2>
           <p class="post_body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            distinctio ipsam possimus voluptatibus fugit aperiam laboriosam
-            ullam doloribus rem dolorem ut delectus consequatur veniam incidunt
-            illum itaque labore, et vel cum ipsum! Repudiandae commodi
-            cupiditate eius nobis voluptate fuga suscipit, voluptatibus veniam
-            aspernatur in distinctio error a, doloribus possimus consequuntur.
+            <?= substr($featured['body'],0,300)?> ...
           </p>
           <div class="post_author">
+            <?php
+            // fetch author from users table using author_id
+            $author_id = $featured['author_id'];
+            $author_query = "SELECT * FROM users WHERE id = $author_id";
+            $author_result = mysqli_query($connection, $author_query);
+            $author = mysqli_fetch_assoc($author_result);
+            ?>
             <div class="post_author_avatar">
-                <img src="./images/avatar.JPG" alt="author pic">
+                <img src="./images/<?=$author['avatar']?>" alt="author pic">
             </div>
             <div class="post_author_info">
-                <h5>By: Samuel Tesfaye</h5>
-                <small>May 7, 2023 - 07:23</small>
+                <h5>By: <?="{$author['firstname']} {$author['lastname']}"?></h5>
+                <small>
+                    <?= date("M d, Y - H:i", strtotime($featured['date_time']))?>
+                </small>
 
             </div>
             
@@ -38,123 +62,65 @@ include 'components/header.php'
         </div>
       </div>
     </section>
+    <?php endif?>
 
     <section class="posts">
         <div class="container posts_container">
+            <?php while($post =  mysqli_fetch_assoc($posts)) : ?>
             <article class="post">
                 <div class="post_thumbnail">
-                    <img src="./images/blog1.jpg" alt="">
+                    <img src="./images/<?=$post['thumbnail']?>" alt="">
                 </div>
                 <div class="post_info">
-                    <a href="" class="category_button">Sports</a>
-                    <h3 class="post_title"><a href="viewpost.html">Lorem ipsum dolor, sit amet consectetur adipisicing.</a></h3>
-                    <p class="post_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere possimus pariatur esse sed consequuntur provident distinctio mollitia sequi inventore maxime?</p>
+                <?php
+            $category_id = $post['category_id'];
+            $category_query = "SELECT * FROM categories WHERE id=$category_id";
+            $category_result = mysqli_query($connection , $category_query);
+            $category = mysqli_fetch_assoc($category_result)
+
+
+            ?>
+                    
+                    <a href="<?=ROOT_URL?>category-posts.php?id=<?=$post['category_id']?>" class="category_button"><?=$category['title']?></a>
+                    <h3 class="post_title"><a href="<?=ROOT_URL?>viewpost.php?id=<?=$post['id']?>"><?=$post['title']?></a></h3>
+                    <p class="post_body"><?= substr($post['body'],0,150)?> ...</p>
                     <div class="post_author">
+                    <?php
+            // fetch author from users table using author_id
+            $author_id = $post['author_id'];
+            $author_query = "SELECT * FROM users WHERE id = $author_id";
+            $author_result = mysqli_query($connection, $author_query);
+            $author = mysqli_fetch_assoc($author_result);
+            ?>
                         <div class="post_author_avatar">
-                            <img src="./images/avatar2.jpg" alt="">
+                            <img src="./images/<?=$author['avatar']?>" alt="">
                         </div>
                         <div class="post_author_info">
-                            <h5>By: Abebe Kebede</h5>
-                            <small>May 9, 2023 - 9:55</small>
+                        
+                            <h5>By: <?="{$author['firstname']} {$author['lastname']}"?></h5>
+                            <small><?= date("M d, Y - H:i", strtotime($post['date_time']))?></small>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article class="post">
-                <div class="post_thumbnail">
-                    <img src="./images/blog2.jpg" alt="">
-                </div>
-                <div class="post_info">
-                    <a href="" class="category_button">Science</a>
-                    <h3 class="post_title"><a href="viewpost.html">Lorem ipsum dolor, sit amet consectetur adipisicing.</a></h3>
-                    <p class="post_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere possimus pariatur esse sed consequuntur provident distinctio mollitia sequi inventore maxime?</p>
-                    <div class="post_author">
-                        <div class="post_author_avatar">
-                            <img src="./images/avatar3.jfif" alt="">
-                        </div>
-                        <div class="post_author_info">
-                            <h5>By: Abebe Kebede</h5>
-                            <small>May 9, 2023 - 9:55</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post_thumbnail">
-                    <img src="./images/blog3.jpg" alt="">
-                </div>
-                <div class="post_info">
-                    <a href="" class="category_button">Food</a>
-                    <h3 class="post_title"><a href="viewpost.html">Lorem ipsum dolor, sit amet consectetur adipisicing.</a></h3>
-                    <p class="post_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere possimus pariatur esse sed consequuntur provident distinctio mollitia sequi inventore maxime?</p>
-                    <div class="post_author">
-                        <div class="post_author_avatar">
-                            <img src="./images/avatar4.jfif" alt="">
-                        </div>
-                        <div class="post_author_info">
-                            <h5>By: Abebe Kebede</h5>
-                            <small>May 9, 2023 - 9:55</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post_thumbnail">
-                    <img src="./images/blog4.jpg" alt="">
-                </div>
-                <div class="post_info">
-                    <a href="" class="category_button">News</a>
-                    <h3 class="post_title"><a href="viewpost.html">Lorem ipsum dolor, sit amet consectetur adipisicing.</a></h3>
-                    <p class="post_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere possimus pariatur esse sed consequuntur provident distinctio mollitia sequi inventore maxime?</p>
-                    <div class="post_author">
-                        <div class="post_author_avatar">
-                            <img src="./images/avatar5.jfif" alt="">
-                        </div>
-                        <div class="post_author_info">
-                            <h5>By: Abebe Kebede</h5>
-                            <small>May 9, 2023 - 9:55</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post_thumbnail">
-                    <img src="./images/blog5.jpg" alt="">
-                </div>
-                <div class="post_info">
-                    <a href="" class="category_button">Art</a>
-                    <h3 class="post_title"><a href="viewpost.html">Lorem ipsum dolor, sit amet consectetur adipisicing.</a></h3>
-                    <p class="post_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere possimus pariatur esse sed consequuntur provident distinctio mollitia sequi inventore maxime?</p>
-                    <div class="post_author">
-                        <div class="post_author_avatar">
-                            <img src="./images/avatar6.jfif" alt="">
-                        </div>
-                        <div class="post_author_info">
-                            <h5>By: Abebe Kebede</h5>
-                            <small>May 9, 2023 - 9:55</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
+            <?php endwhile ?>
         </div>
     </section>
 
     <section class="category_buttons">
       <div class="container category_buttons-container">
-        <a href="" class="category_button">Personal blog</a>
-        <a href="" class="category_button">Lifestyle</a>
-        <a href="" class="category_button">Technology</a>
-        <a href="" class="category_button">Business</a>
-        <a href="" class="category_button">Entertainment</a>
-        <a href="" class="category_button">Politics</a>
-        <a href="" class="category_button">Sports</a>
-        <a href="" class="category_button">Art and culture</a>
-        <a href="" class="category_button">Science</a>
-        <a href="" class="category_button">Enviroment</a>
+        <?php
+
+        $all_categories_query = "SELECT * FROM categories ORDER BY title";
+        $all_categories = mysqli_query($connection,$all_categories_query); 
+
+        ?>
+
+        <?php while ($category = mysqli_fetch_assoc($all_categories)) : ?> 
+        <a href="<?=ROOT_URL?>category-posts.php?id=<?=$category['id']?>" class="category_button"><?=$category['title']?></a>
+        <?php endwhile?>
+        
 
 
 
