@@ -1,47 +1,47 @@
 <?php
-include 'components/header.php'
+include 'components/header.php';
+
+// fetch post from database if id is set
+if(isset($_GET['id'])){
+$id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+$query = "SELECT * FROM posts WHERE id=$id";
+$result = mysqli_query($connection , $query);
+$post = mysqli_fetch_assoc($result);
+}else{
+  header('location: ' . ROOT_URL . 'blog.php');
+  die();
+}
 ?>
 
     <section class="singlepost">
       <div class="container singlepost_container">
         <h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste,
-          dolores?
+          <?=$post['title']?>
         </h2>
         <div class="post_author">
-          <div class="post_author_avatar">
-            <img src="./images/avatar4.jfif" alt="" />
+            <?php
+            // fetch author from users table using author_id
+            $author_id = $post['author_id'];
+            $author_query = "SELECT * FROM users WHERE id = $author_id";
+            $author_result = mysqli_query($connection, $author_query);
+            $author = mysqli_fetch_assoc($author_result);
+            ?>
+            <div class="post_author_avatar">
+              <img src="./images/<?= $author['avatar'] ?>" alt="">
+            </div>
+            <div class="post_author_info">
+
+              <h5>By: <?= "{$author['firstname']} {$author['lastname']}" ?></h5>
+              <small><?= date("M d, Y - H:i", strtotime($post['date_time'])) ?></small>
+            </div>
           </div>
-          <div class="post_author_info">
-            <h5>By: Abebe Kebede</h5>
-            <small>May 9, 2023 - 9:55</small>
-          </div>
-        </div>
         
         <div class="singlepost_thumbnail">
-            <img src="./images/blog1.jpg" alt="" />
+            <img src="./images/<?=$post['thumbnail']?>" alt="" />
           </div>
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur aut
-          facilis voluptate nisi? Esse blanditiis animi reiciendis facilis
-          recusandae. Laborum unde officia libero et ratione voluptate porro
-          dolorum suscipit fugiat quibusdam, quam autem debitis id, eveniet sit,
-          est tempora aspernatur totam dolores.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur aut
-          facilis voluptate nisi? Esse blanditiis animi reiciendis facilis
-          recusandae. Laborum unde officia libero et ratione voluptate porro
-          dolorum suscipit fugiat quibusdam, quam autem debitis id, eveniet sit,
-          est tempora aspernatur totam dolores.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur aut
-          facilis voluptate nisi? Esse blanditiis animi reiciendis facilis
-          recusandae. Laborum unde officia libero et ratione voluptate porro
-          dolorum suscipit fugiat quibusdam, quam autem debitis id, eveniet sit,
-          est tempora aspernatur totam dolores.
+         <?=$post['body']?>
         </p>
       </div>
     </section>
