@@ -218,17 +218,38 @@ nav button {
 
 .featured {
     margin-top: 8rem;
+    
 }
 
 .featured_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
+    
+    padding: 20px;
 }
 
 .featured .post_thumbnail {
-    height: fit-content;
+    width: 100%;
+    height: 50vh;
+    
 
+}
+.post{
+    border : rgb(87, 78, 215) solid 2px;
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+
+.post_info{
+    margin-top: 10px;
+}
+.featured .post_thumbnail img{
+    width: 100%; 
+    height:100%;
+  object-fit: cover;
+  
 }
 
 .posts .post_thumbnail{
@@ -247,7 +268,7 @@ nav button {
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
     margin-bottom: 5rem;
-    border: 2px red;
+    
 
 }
 

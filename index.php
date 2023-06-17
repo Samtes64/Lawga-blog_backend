@@ -33,7 +33,7 @@ $posts = mysqli_query($connection, $query);
           <a href="<?= ROOT_URL ?>viewpost.php?id=<?= $featured['id'] ?>"><?= $featured['title'] ?></a>
         </h2>
         <p class="post_body">
-          <?= substr($featured['body'], 0, 300) ?> ...
+          <?= substr($featured['body'], 0, 500) ?> ...
         </p>
         <div class="post_author">
           <?php
