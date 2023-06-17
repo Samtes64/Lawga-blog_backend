@@ -1,25 +1,18 @@
 <?php
+require 'components/header.php';
 
-include 'components/header.php';
-$query = "SELECT * FROM posts ORDER BY date_time desc";
-$posts = mysqli_query($connection, $query);
+if(isset($_GET['search']) && isset($_GET['submit'])){
+    $search= filter_var($_GET['search'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $query = "SELECT * FROM posts WHERE title LIKE '%$search%' OR body LIKE '%$search%' ORDER BY date_time DESC";
+    $posts = mysqli_query($connection,$query);
+} else {
+    header('location: ' . ROOT_URL . 'index.php');
+}
+
 ?>
 
-
-<section class="search_bar">
-      <form class="container search_bar-container" action="<?=ROOT_URL?>search.php" method="GET">
-        <div>
-            <i class="uil uil-search"></i> 
-            <input type="search" name="search" placeholder="Search">
-        </div>
-        <button type="submit" name="submit"  class="btn">Go</button>
-      </form>
-</section>
-
-
-   
-
-<section class="posts <?= $featured ? '' : 'section_extra-margin' ?>">
+<?php if (mysqli_num_rows($posts)>0) : ?>
+<section class="posts section_extra-margin ">
   <div class="container posts_container">
     <?php while ($post =  mysqli_fetch_assoc($posts)) : ?>
       <article class="post">
@@ -62,7 +55,11 @@ $posts = mysqli_query($connection, $query);
     <?php endwhile ?>
   </div>
 </section>
-
+<?php else : ?>
+    <div class="alert_message error lg section_extra-margin">
+        <p>No posts found</p>
+    </div>
+<?php endif ?>
 
 <section class="category_buttons">
   <div class="container category_buttons-container">
@@ -83,6 +80,4 @@ $posts = mysqli_query($connection, $query);
   </div>
 </section>
 
-<?php
-include 'components/footer.php'
-?>
+<?php include 'components/footer.php' ?>

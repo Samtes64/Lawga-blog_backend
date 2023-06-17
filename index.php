@@ -9,7 +9,7 @@ $featured = mysqli_fetch_assoc($featured_result);
 
 //fetch 9 posts from posts table
 
-$query = "SELECT * FROM posts ORDER BY date_time LIMIT 9";
+$query = "SELECT * FROM posts ORDER BY date_time desc LIMIT 9";
 $posts = mysqli_query($connection, $query);
 
 ?>
@@ -62,7 +62,7 @@ $posts = mysqli_query($connection, $query);
   </section>
 <?php endif ?>
 
-<section class="posts">
+<section class="posts <?= $featured ? '' : 'section_extra-margin' ?>">
   <div class="container posts_container">
     <?php while ($post =  mysqli_fetch_assoc($posts)) : ?>
       <article class="post">

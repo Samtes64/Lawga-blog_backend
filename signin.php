@@ -49,7 +49,15 @@ unset($_SESSION['signin-data'])
             <?php endif ?>
             <form action="<?=ROOT_URL?>signin-logic.php" method="POST">
                 <input type="text" placeholder="Username" value='<?= $username_email?>' name='username_email'>
-                <input type="text" placeholder="Password" name='password'>
+                <input type="password" style="display: block;
+    width: 100%;
+    padding: 10px;
+    background: var(--color-dark3);
+    margin-bottom: 10px;
+    resize: none;
+    color: white;
+
+    border-radius: 5px;" placeholder="Password" name='password'>
                 
                 <button type="submit" name="submit" class="btn">Sign In</button>
                 <small>Don't have an account? <a href="signup.php">Sign Up</a></small>
