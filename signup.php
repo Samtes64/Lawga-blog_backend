@@ -77,6 +77,38 @@ unset($_SESSION['signup-data']);
 
   </section>
 
+  <script>
+    // Get the button and body elements
+    var themeButton = document.getElementById('themeButton');
+    var bodyElement = document.body;
+
+    // Check if a theme is already stored in local storage
+    var savedTheme = localStorage.getItem('theme');
+
+    // Apply the saved theme if available
+    if (savedTheme) {
+      bodyElement.classList.add(savedTheme);
+    }
+
+    // Button click event handler
+    themeButton.addEventListener('click', function() {
+      // Check if the body element has the light theme class
+      var isLightTheme = bodyElement.classList.contains('light-theme');
+
+      // Remove the current theme class
+      bodyElement.classList.remove(isLightTheme ? 'light-theme' : 'dark-theme');
+
+      // Determine the next theme class
+      var nextTheme = isLightTheme ? 'dark-theme' : 'light-theme';
+
+      // Add the next theme class to the body element
+      bodyElement.classList.add(nextTheme);
+
+      // Save the selected theme in local storage
+      localStorage.setItem('theme', nextTheme);
+    });
+  </script>
+
 
 </body>
 

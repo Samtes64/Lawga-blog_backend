@@ -39,3 +39,5 @@ const hideSidebar = ()=>{
 
  showSidebarBtn.addEventListener('click',showSidebar)
  hideSidebarBtn.addEventListener('click',hideSidebar)
+
+ 
